@@ -10,6 +10,10 @@ module.exports = (ngModule) => {
     }];
     this.portalAccess = false;
 
-    this.goTo = () => {};
+    this.goTo = goTo;
+
+    function goTo() {
+
+    }
   }
 };
