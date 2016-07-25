@@ -1,0 +1,49 @@
+{
+  "name": "adevav-front-end",
+  "version": "0.1.0",
+  "description": "This is the code that powers the ADEVAV website front-end.",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/creativo-pty/adevav-front-end.git"
+  },
+  "scripts": {
+    "start": "node node_modules/.bin/webpack-dev-server --hot --content-base src",
+    "build": "rm -fr dist/; NODE_ENV=production node node_modules/.bin/webpack --progress -p && cp src/index.html dist/index.html"
+  },
+  "keywords": [
+    "adevav",
+    "front-end",
+    "angular"
+  ],
+  "author": "Christopher Duncan <cj.duncan.a@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/creativo-pty/adevav-front-end/issues"
+  },
+  "homepage": "https://github.com/creativo-pty/adevav-front-end#readme",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-animate": "^1.5.8",
+    "angular-aria": "^1.5.8",
+    "angular-material": "^1.1.0-rc.5",
+    "angular-ui-bootstrap": "^2.0.0",
+    "angular-ui-router": "^0.3.1",
+    "bootstrap": "^3.3.6"
+  },
+  "devDependencies": {
+    "babel-core": "^6.11.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
+    "raw-loader": "^0.5.1",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  }
+}

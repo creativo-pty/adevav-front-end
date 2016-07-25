@@ -1,0 +1,16 @@
+<div uib-carousel
+  active="vm.active"
+  interval="vm.interval"
+  no-wrap="vm.noWrapSlides">
+    <div uib-slide
+      ng-repeat="slide in vm.slides"
+      index="$index"
+      itemscope
+      itemtype="http://schema.org/ImageObject">
+      <img ng-src="{{slide.image}}" style="margin:auto;" itemprop="contentUrl">
+      <div class="carousel-caption">
+        <h4>{{slide.title}}</h4>
+        <p itemprop="caption">{{slide.text}}</p>
+      </div>
+    </div>
+</div>

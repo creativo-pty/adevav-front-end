@@ -1,0 +1,34 @@
+<footer role="contentinfo" id="colophon" layout layout-align="space-between">
+  <div flex="30">
+    <h1>Sobre Nosotros</h1>
+    <p>La Asociación de Esposas de Veteranos y Amigas Voluntarias (ADEVAV), Organización No Gubernamental Benéfica, les da la más cordial bienvenida a su sitio web, realizado con el propósito de que las personas que nos visiten, puedan obtener información sobre la labor social que realiza la asociación e igualmente puedan interactuar vía virtual con sus asociadas.</p>
+  </div>
+  <div flex="30">
+    <div ng-if="vm.projects.length">
+      <h1>Los Proyectos</h1>
+      <ul>
+        <li ng-repeat="project in vm.projects">
+          <a ng-click="vm.goTo(project)" title="Vínculo a {{ project.title }}">{{ project.title }}</a>
+        </li>
+      </ul>
+    </div>
+    <div ng-if="vm.articles.length">
+      <h1>Los Artículos</h1>
+      <ul>
+        <li ng-repeat="article in vm.articles">
+          <a ng-click="vm.goTo(article)" title="Vínculo a {{ article.title }}">{{ article.title }}</a>
+        </li>
+      </ul>
+    </div>
+    <div ng-if="!(vm.projects.length + vm.articles.length)">
+      <h1>El Sitio Web</h1>
+      <navigate></navigate>
+    </div>
+  </div>
+  <div flex="30">
+    <search-form></search-form>
+    <nav id="social"><social></social></nav>
+    <a ng-if="vm.portalAccess" href="/portal"><h4>Entrar al Portal</h4></a>
+    <div id="designer"><span>Diseñado por</span><a href="http://www.creativospty.com/" title="Creativos PTY"></a></div>
+  </div>
+</footer>
