@@ -3,5 +3,7 @@
 module.exports = (ngModule) => {
   ngModule.controller('headerCtrl', headerCtrl);
 
-  function headerCtrl() {}
+  function headerCtrl() {
+    this.blogName = 'ADEVAV';
+  }
 };
