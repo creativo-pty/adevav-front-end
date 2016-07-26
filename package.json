@@ -1,6 +1,6 @@
 {
   "name": "adevav-front-end",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "This is the code that powers the ADEVAV website front-end.",
   "main": "src/index.js",
   "repository": {
