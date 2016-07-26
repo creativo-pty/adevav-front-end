@@ -25,6 +25,9 @@ const ngModule = angular.module('adevavFrontEnd', [
 // Load partial controllers
 require('./partials')(ngModule);
 
+// Load filters
+require('./filters')(ngModule);
+
 // Load configuration files
 require('./config')(ngModule);
 

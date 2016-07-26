@@ -1,1 +1,63 @@
 <carousel></carousel>
+<section ng-if="vm.posts.length">
+  <div>
+    <h1 class="section-title">Entradas de la Bitácora</h1>
+    <div>
+      <article itemscope itemtype="http://schema.org/BlogPosting" id="post-{{ post.id }}" ng-repeat="post in vm.posts">
+        <h1 itemprop="headline" class="entry-title">
+          <a ng-href="post.link" title="Vínculo a {{ post.title }}" rel="bookmark" itemprop="url">{{ post.title }}</a>
+        </h1>
+        <div class="entry-excerpt">
+          <a ng-href="post.thumbnail" title="{{ post.title }}" class="pull-left span3" ng-if="post.thumbnail">
+            <?php the_post_thumbnail('thumbnail', array('class' => 'img-polaroid', 'itemprop' => 'thumbnailUrl')) ?>
+          </a>
+          <div ng-class="{'pull-right': post.thumbnail, span9: post.thumbnail}">
+            <span>Escrito por <span itemprop="author">
+              <a ng-href="post.author.link" title="Entradas escritos por {{ post.author.name }}" rel="author">
+                {{ post.author.name }}
+              </a>
+            </span> en <span itemprop="articleSection">{{ post.author.categories | toString }}</span></span><br>
+            <time datetime="{{ post.datePublished }}" itemprop="datePublished" class="entry-time">{{ post.datePublished }}</time>
+            <p itemprop="text">{{ post.text }}</p>
+            <footer>
+              <a ng-href="post.link" title="{{ post.title }}" itemprop="url">Continue leyendo&hellip;</a><br>
+              <?php get_template_part('comment_link') ?><br>
+              <span itemprop="keywords"><?php the_tags(__('Etiquetas', 'adevav') . ': ', ', ', '') ?></span>
+            </footer>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<section ng-if="vm.projects.length">
+  <div>
+    <h1 class="section-title">Nuestros Últimos Proyectos</h1>
+    <div>
+      <article itemscope itemtype="http://schema.org/BlogPosting" id="project-{{ project.id }}" ng-repeat="project in vm.projects">
+        <h1 itemprop="headline" class="entry-title">
+          <a ng-href="project.link" title="Vínculo a {{ project.title }}" rel="bookmark" itemprop="url">{{ project.title }}</a>
+        </h1>
+        <div class="entry-excerpt">
+          <a ng-href="project.thumbnail" title="{{ project.title }}" class="pull-left span3"ng-if="project.thumbnail">
+            <?php the_post_thumbnail('thumbnail', array('class' => 'img-polaroid', 'itemprop' => 'thumbnailUrl')) ?>
+          </a>
+          <div ng-class="{'pull-right': project.thumbnail, span9: project.thumbnail}">
+            <span>Escrito por <span itemprop="author">
+              <a ng-href="project.author.link" title="Entradas escritos por {{ project.author.name }}" rel="author">
+                {{ project.author.name }}
+              </a>
+            </span></span><br>
+            <time datetime="{{ project.datePublished }}" itemprop="datePublished" class="entry-time">{{ project.datePublished }}</time>
+            <p itemprop="text">{{ project.text }}</p>
+            <footer>
+              <a ng-href="project.link" title="{{ project.title }}" itemprop="url">Continue leyendo&hellip;</a><br>
+              <?php get_template_part('comment_link') ?><br>
+              <span itemprop="keywords"><?php the_tags(__('Etiquetas', 'adevav') . ': ', ', ', '') ?></span>
+            </footer>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
