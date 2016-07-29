@@ -5,7 +5,7 @@ module.exports = (ngModule) => {
     return {
       restrict: 'E',
       scope: {},
-      template: require('./carousel.html'),
+      template: require('./carousel.view.html'),
       controller: 'carouselCtrl',
       controllerAs: 'vm'
     };

@@ -5,7 +5,7 @@ module.exports = (ngModule) => {
     return {
       restrict: 'E',
       scope: {},
-      template: require('./search-form.html'),
+      template: require('./search-form.view.html'),
       controller: 'searchFormCtrl',
       controllerAs: 'vm'
     };

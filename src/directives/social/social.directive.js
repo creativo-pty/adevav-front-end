@@ -5,7 +5,7 @@ module.exports = (ngModule) => {
     return {
       restrict: 'E',
       scope: {},
-      template: require('./social.html'),
+      template: require('./social.view.html'),
       controller: 'socialCtrl',
       controllerAs: 'vm'
     };
