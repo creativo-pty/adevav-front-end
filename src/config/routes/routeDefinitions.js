@@ -9,7 +9,7 @@ module.exports = (ngModule) => {
     $urlRouterProvider.otherwise('/');
     $stateProvider.state('public', {
       abstract: true,
-      url: '/',
+      url: '',
       views: {
         header: {
           template: require('../../partials/header/header.view.html'),
@@ -27,9 +27,15 @@ module.exports = (ngModule) => {
       }
     })
     .state('public.home', {
-      url: '',
+      url: '/',
       template: require('../../modules/home/home.view.html'),
       controller: 'homeCtrl',
+      controllerAs: 'vm'
+    })
+    .state('public.about-us', {
+      url: '/about-us',
+      template: require('../../modules/aboutUs/aboutUs.view.html'),
+      controller: 'aboutUsCtrl',
       controllerAs: 'vm'
     });
   }
