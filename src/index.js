@@ -22,16 +22,19 @@ const ngModule = angular.module('adevavFrontEnd', [
   tabs
 ]);
 
-// Load partial controllers
-require('./partials')(ngModule);
-
-// Load filters
-require('./filters')(ngModule);
-
 // Load configuration files
 require('./config')(ngModule);
 
 // Load directives
 require('./directives')(ngModule);
+
+// Load filters
+require('./filters')(ngModule);
+
+// Load modules
+require('./modules')(ngModule);
+
+// Load partial controllers
+require('./partials')(ngModule);
 
 module.exports = ngModule;

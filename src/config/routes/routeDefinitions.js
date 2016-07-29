@@ -7,7 +7,8 @@ module.exports = (ngModule) => {
 
   function router($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
-    $stateProvider.state('home', {
+    $stateProvider.state('public', {
+      abstract: true,
       url: '/',
       views: {
         header: {
@@ -16,9 +17,7 @@ module.exports = (ngModule) => {
           controllerAs: 'vm'
         },
         content: {
-          template: require('../../partials/content/content.view.html'),
-          controller: 'contentCtrl',
-          controllerAs: 'vm'
+          template: '<ui-view />'
         },
         footer: {
           template: require('../../partials/footer/footer.view.html'),
@@ -26,6 +25,12 @@ module.exports = (ngModule) => {
           controllerAs: 'vm'
         }
       }
+    })
+    .state('public.home', {
+      url: '',
+      template: require('../../modules/home/home.view.html'),
+      controller: 'homeCtrl',
+      controllerAs: 'vm'
     });
   }
 };
