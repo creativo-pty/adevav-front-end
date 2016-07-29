@@ -1,5 +1,4 @@
 'use strict';
-
 module.exports = (ngModule) => {
-  require('./content.controller')(ngModule);
+  require('./aboutUs.controller')(ngModule);
 };

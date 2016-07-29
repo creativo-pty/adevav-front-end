@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = (ngModule) => {
-  ngModule.controller('contentCtrl', contentCtrl);
+  ngModule.controller('homeCtrl', homeCtrl);
 
-  function contentCtrl() {
+  function homeCtrl() {
     this.posts = [{
       title: 'Reseña Histórica',
       link: '/',

@@ -7,8 +7,9 @@ module.exports = (ngModule) => {
 
   function router($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
-    $stateProvider.state('home', {
-      url: '/',
+    $stateProvider
+    .state('index', {
+      abstract: true,
       views: {
         header: {
           template: require('../../partials/header/header.view.html'),
@@ -16,9 +17,7 @@ module.exports = (ngModule) => {
           controllerAs: 'vm'
         },
         content: {
-          template: require('../../partials/content/content.view.html'),
-          controller: 'contentCtrl',
-          controllerAs: 'vm'
+          template: '<ui-view />'
         },
         footer: {
           template: require('../../partials/footer/footer.view.html'),
@@ -26,6 +25,36 @@ module.exports = (ngModule) => {
           controllerAs: 'vm'
         }
       }
+    })
+    .state('index.home', {
+      url: '/',
+      template: require('../../modules/home/home.view.html'),
+      controller: 'homeCtrl',
+      controllerAs: 'vm'
+    })
+    .state('public', {
+      abstract: true,
+      views: {
+        header: {
+          template: require('../../partials/header/header.view.html'),
+          controller: 'headerCtrl',
+          controllerAs: 'vm'
+        },
+        content: {
+          template: '<ui-view />'
+        },
+        footer: {
+          template: require('../../partials/footer/footer.view.html'),
+          controller: 'footerCtrl',
+          controllerAs: 'vm'
+        }
+      }
+    })
+    .state('public.about-us', {
+      url: '/about-us',
+      template: require('../../modules/aboutUs/aboutUs.view.html'),
+      controller: 'aboutUsCtrl',
+      controllerAs: 'vm'
     });
   }
 };
