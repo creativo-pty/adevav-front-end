@@ -1,0 +1,35 @@
+<aside ng-if="vm.posts.length || vm.projects.length">
+  <article><search-form></search-form></article>
+  <article ng-if="vm.currentPage !== '/bitacora/' && vm.posts.length">
+    <h1>Artículos Recientes</h1>
+    <ul>
+      <li ng-repeat="post in vm.posts">
+        <a ng-href="{{ post.permalink }}" title="Vínculo a {{ post.title }}">{{ post.title }}</a>
+      </li>
+    </ul>
+  </article>
+  <article ng-if="vm.currentPage !== '/proyectos/' && vm.projects.length">
+    <h1>Proyectos Recientes</h1>
+    <ul>
+      <li ng-repeat="project in vm.projects">
+        <a ng-href="{{ project.permalink }}" title="Vínculo a {{ project.title }}">{{ project.title }}</a>
+      </li>
+    </ul>
+  </article>
+  <article ng-if="vm.posts.length">
+    <h1>Categorias</h1>
+    <ul>
+      <li ng-repeat="category in vm.categories">
+        <a ng-href="{{ category.permalink }}" title="Vea todo el contenido bajo {{ category.title }}">{{ category.title }}</a>
+      </li>
+    </ul>
+  </article>
+  <article>
+    <h1>Archiveros</h1>
+    <ul style="text-transform: capitalize">
+      <li ng-repeat="archive in vm.archives">
+        <a ng-href="{{ archive.permalink }}" title="Vea todo el contenido escrito en {{ archive.title }}">{{ archive.title }}</a>
+      </li>
+    </ul>
+  </article>
+</aside>

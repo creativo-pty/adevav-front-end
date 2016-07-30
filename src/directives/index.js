@@ -5,5 +5,6 @@ module.exports = (ngModule) => {
   require('./carousel')(ngModule);
   require('./page')(ngModule);
   require('./search-form')(ngModule);
+  require('./sidebar')(ngModule);
   require('./social')(ngModule);
 };
