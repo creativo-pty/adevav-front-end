@@ -1,0 +1,56 @@
+<div layout>
+  <section flex="75">
+    <h2 class="entry-title">Contáctanos</h2>
+    <form name="contactForm" novalidate layout="column" layout-padding>
+      <div layout layout-padding>
+        <md-input-container flex>
+          <label>Contactar a</label>
+          <!-- TODO: Fix this select button -->
+          <!-- Expect that when an associate is selected, the option is attached
+               to vm.contact -->
+          <md-select name="associate" ng-model="vm.contact.associate" required>
+            <md-option ng-if="associate.email" ng-repeat="associate in vm.associates" ng-value="associate">
+              {{ associate.name }}
+            </md-option>
+          </md-select>
+          <div ng-messages="contactForm.associate.$error" name="associate-errors" ng-if="contactForm.$submitted">
+              <ng-message when="required">Requerimos saber con quien quisieras contactar.</ng-message>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout layout-padding>
+        <md-input-container flex>
+          <label>Su Nombre</label>
+          <input name="name" type="text" ng-model="vm.contact.name" required />
+          <div ng-messages="contactForm.name.$error" name="name-errors" ng-if="contactForm.$submitted">
+              <ng-message when="required">Su nombre es requerido.</ng-message>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout layout-padding>
+        <md-input-container flex>
+          <label>Correo Electrónico</label>
+          <input name="email" type="email" ng-model="vm.contact.email" required />
+          <div ng-messages="contactForm.email.$error" name="email-errors" ng-if="contactForm.$submitted">
+              <ng-message when="required">Su correo electrónico es requerido.</ng-message>
+              <ng-message when="email">Lo proveído no es un correo electrónico.</ng-message>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout layout-padding>
+        <md-input-container flex>
+          <label>Mensaje</label>
+          <textarea cols="35" rows="12" name="message" ng-model="vm.contact.message" required></textarea>
+          <div ng-messages="contactForm.message.$error" name="message-errors" ng-if="contactForm.$submitted">
+              <ng-message when="required">Su mensaje es requerido.</ng-message>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout layout-padding>
+        <md-button ng-click="vm.resetForm(contactForm)" class="md-raised">Borrar</md-button>
+        <md-button ng-click="vm.submitForm(contactForm)" ng-disabled="contactForm.$invalid" class="md-raised md-primary">Enviar</md-button>
+      </div>
+    </form>
+  </section>
+  <sidebar flex="25"></sidebar>
+</div>

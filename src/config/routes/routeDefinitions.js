@@ -55,6 +55,12 @@ module.exports = (ngModule) => {
       template: require('../../modules/aboutUs/aboutUs.view.html'),
       controller: 'aboutUsCtrl',
       controllerAs: 'vm'
+    })
+    .state('public.contact-us', {
+      url: '/contact-us',
+      template: require('../../modules/contactUs/contactUs.view.html'),
+      controller: 'contactUsCtrl',
+      controllerAs: 'vm'
     });
   }
 };
