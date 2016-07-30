@@ -3,21 +3,29 @@
 module.exports = (ngModule) => {
   ngModule.controller('contactUsCtrl', contactUsCtrl);
 
-  function contactUsCtrl() {
+  contactUsCtrl.$inject = ['$stateParams'];
+
+  function contactUsCtrl($stateParams) {
     // TODO: Factory and model to query associates.
     this.associates = [{
-      id: 1,
+      id: 0,
       name: 'ADEVAV',
       email: 'contacto@adevav.com'
     }, {
-      id: 2,
+      id: 1,
       name: 'ADEVAV Webmaster',
       email: 'webmaster@adevav.org'
     }, {
-      id: 3,
+      id: 2,
       name: 'John Doe',
       email: ''
     }];
+
+    this.contact = {};
+
+    this.contact.associate = this.associates.find((associate) => {
+      return associate.id === $stateParams.associateId;
+    });
 
     this.resetForm = (form) => {
       if (form) {

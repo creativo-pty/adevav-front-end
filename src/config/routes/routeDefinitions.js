@@ -58,6 +58,9 @@ module.exports = (ngModule) => {
     })
     .state('public.contact-us', {
       url: '/contact-us',
+      params: {
+        associateId: 0
+      },
       template: require('../../modules/contactUs/contactUs.view.html'),
       controller: 'contactUsCtrl',
       controllerAs: 'vm'
