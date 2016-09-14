@@ -1,4 +1,4 @@
-<a  ui-sref="public.home" title="{{ vm.blogName }}" rel="home" layout  ng-click="vm.setActiveTab(-1)">
+<a  ui-sref="public.home" title="{{ vm.blogName }}" rel="home" layout>
   <div class="site-logo"></div>
   <hgroup itemscope itemtype="http://schema.org/NGO">
     <h1 itemprop="name" class="site-title">ADEVAV</h1>
@@ -8,10 +8,10 @@
 <div layout="column" layout-align="start end">
   <social></social>
   <uib-tabset id="nav-tabs" active="vm.activeTab">
-    <uib-tab heading="Sobre Nosotros" ui-sref="public.about-us" ng-click="vm.setActiveTab(0)"></uib-tab>
+    <uib-tab index="public.about-us" heading="Sobre Nosotros" ui-sref="public.about-us"></uib-tab>
     <uib-tab heading="Bitácora"></uib-tab>
     <uib-tab heading="Proyectos"></uib-tab>
     <uib-tab heading="Asociadas"></uib-tab>
-    <uib-tab heading="Contáctanos" ui-sref="public.contact-us" ng-click="vm.setActiveTab(4)"></uib-tab>
+    <uib-tab index="public.contact-us" heading="Contáctanos" ui-sref="public.contact-us"></uib-tab>
   </uib-tabset>
 </div>

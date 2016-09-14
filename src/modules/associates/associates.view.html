@@ -1,0 +1,30 @@
+<div layout>
+  <section flex="75">
+    <h2 class="entry-title">Nuestras Asociadas</h2>
+    <ul id="associates-list" class="thumbnails" layout layout-wrap>
+      <li id="associate-{{ associate.id }}" class="associate" ng-repeat="associate in vm.associates" flex="50">
+        <article class="thumbnail">
+          <h3>
+            {{ associate.name }}
+            <span class="label" ng-if="associate.role">
+              {{ associate.role }}
+            </span>
+          </h3>
+          <div layout>
+            <div>
+              {{ associate.avatar }}
+            </div>
+            <div flex>
+              <p>{{ associate.description }}</p>
+            </div>
+          </div>
+          <div class="navbar"><ul class="nav">
+            <li><a ui-sref="public.contactUs({ id: associate.id })"><i class="icon-envelope"></i></a></li>
+            <li><a ui-sref="public.associates({ id: associate.id })">Ver más&hellip;</a></li>
+          </ul></div>
+        </article>
+      </li>
+    </ul>
+  </section>
+  <sidebar flex="25"></sidebar>
+</div>
