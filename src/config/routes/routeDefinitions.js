@@ -44,6 +44,12 @@ module.exports = (ngModule) => {
       controller: 'associatesCtrl',
       controllerAs: 'vm'
     })
+    .state('public.blog', {
+      url: '/blog',
+      template: require('../../modules/blog/blog.view.html'),
+      controller: 'blogCtrl',
+      controllerAs: 'vm'
+    })
     .state('public.contact-us', {
       url: '/contact-us',
       params: {
