@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports = (ngModule) => {
-  require('./home.controller')(ngModule);
+  require('./blog.controller')(ngModule);
 };
