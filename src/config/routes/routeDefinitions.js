@@ -50,6 +50,12 @@ module.exports = (ngModule) => {
       controller: 'blogCtrl',
       controllerAs: 'vm'
     })
+    .state('public.projects', {
+      url: '/projects',
+      template: require('../../modules/projects/projects.view.html'),
+      controller: 'projectsCtrl',
+      controllerAs: 'vm'
+    })
     .state('public.contact-us', {
       url: '/contact-us',
       params: {

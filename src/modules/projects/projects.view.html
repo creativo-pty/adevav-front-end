@@ -1,0 +1,32 @@
+<div layout>
+  <section flex="75">
+    <h2 class="section-title">Proyectos</h2>
+    <div>
+      <article itemscope itemtype="http://schema.org/BlogPosting" id="project-{{ project.id }}" ng-repeat="project in vm.projects">
+        <h1 itemprop="headline" class="entry-title">
+          <a ng-href="project.link" title="Vínculo a {{ project.title }}" rel="bookmark" itemprop="url">{{ project.title }}</a>
+        </h1>
+        <div class="entry-excerpt">
+          <a ng-href="project.thumbnail" title="{{ project.title }}" class="pull-left span3"ng-if="project.thumbnail">
+            <?php the_post_thumbnail('thumbnail', array('class' => 'img-polaroid', 'itemprop' => 'thumbnailUrl')) ?>
+          </a>
+          <div ng-class="{'pull-right': project.thumbnail, span9: project.thumbnail}">
+            <span>Escrito por <span itemprop="author">
+              <a ng-href="project.author.link" title="Entradas escritos por {{ project.author.name }}" rel="author">
+                {{ project.author.name }}
+              </a>
+            </span></span><br>
+            <time datetime="{{ project.datePublished }}" itemprop="datePublished" class="entry-time">{{ project.datePublished }}</time>
+            <p itemprop="text">{{ project.text }}</p>
+            <footer>
+              <a ng-href="project.link" title="{{ project.title }}" itemprop="url">Continue leyendo&hellip;</a><br>
+              <?php get_template_part('comment_link') ?><br>
+              <span itemprop="keywords"><?php the_tags(__('Etiquetas', 'adevav') . ': ', ', ', '') ?></span>
+            </footer>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+  <sidebar flex="25"></sidebar>
+</div>
