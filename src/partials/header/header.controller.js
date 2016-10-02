@@ -3,14 +3,11 @@
 module.exports = (ngModule) => {
   ngModule.controller('headerCtrl', headerCtrl);
 
-  function headerCtrl() {
+  headerCtrl.$inject = ['$state'];
 
-    this.activeTab = -1;
+  function headerCtrl($state) {
+
+    this.activeTab = 'public.about-us';
     this.blogName = 'ADEVAV';
-    this.setActiveTab = setActiveTab;
-
-    function setActiveTab(index) {
-      this.activeTab = index;
-    }
   }
 };
