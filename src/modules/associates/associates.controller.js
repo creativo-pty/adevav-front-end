@@ -18,5 +18,11 @@ module.exports = (ngModule) => {
       name: 'John Doe',
       email: ''
     }];
+
+    this.associates.forEach((associate) => {
+      if (!associate.avatar) {
+        associate.avatar = require('../../img/anonymous.png');
+      }
+    });
   }
 };

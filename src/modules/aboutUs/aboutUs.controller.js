@@ -9,8 +9,8 @@ module.exports = (ngModule) => {
       title: 'Sobre Nosotros',
       content: `
         <p style="text-align: center;">
-          <a href="/img/uploads/2013/08/el_grupo.jpg">
-            <img class="aligncenter wp-image-35" alt="Asociación de Esposas de Veteranos y Amigas Voluntarias" src="/img/uploads/2013/08/el_grupo-300x139.jpg" width="694" height="323" />
+          <a href="${require('../../img/uploads/2013/08/el_grupo.jpg')}">
+            <img class="aligncenter wp-image-35" alt="Asociación de Esposas de Veteranos y Amigas Voluntarias" src="${require('../../img/uploads/2013/08/el_grupo-300x139.jpg')}" width="694" height="323" />
           </a>
         </p>
         <p>La Asociación de Esposas de Veteranos y Amigas Voluntarias (ADEVAV), Organización No Gubernamental Benéfica, les da la más cordial bienvenida a su sitio web, realizado con el propósito de que las personas que nos visiten, puedan obtener información sobre la labor social que realiza la asociación e igualmente puedan interactuar vía virtual con sus asociadas.</p>

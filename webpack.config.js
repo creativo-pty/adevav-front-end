@@ -2,6 +2,7 @@
 
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlPlugin = require('html-webpack-plugin');
 
 const config = {
   context: __dirname + '/src',
@@ -61,7 +62,14 @@ const config = {
 };
 
 if (process.env.NODE_ENV === 'production') {
+
   config.output.path = __dirname + '/dist';
+
+  config.plugins.push(new HtmlPlugin({
+    hash: true,
+    favicon: './img/favicon.png'
+  }));
+
   config.plugins.push(new webpack.optimize.UglifyJsPlugin({
     compress: {
       warnings: false
