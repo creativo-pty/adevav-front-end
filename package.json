@@ -16,6 +16,7 @@
     "docker:start": "docker-compose -f docker-compose.yml up -d",
     "docker:stop": "docker-compose -f docker-compose.yml kill",
     "docker:update": "docker pull creativopty/adevav-back-end; docker pull mysql:5.5",
+    "local": "ADEVAV_BACKEND=http://local-dev:3001/ npm start",
     "start": "node node_modules/.bin/webpack-dev-server --hot --content-base src"
   },
   "keywords": [
@@ -34,9 +35,12 @@
     "angular-animate": "^1.5.8",
     "angular-aria": "^1.5.8",
     "angular-material": "^1.1.0-rc.5",
+    "angular-resource": "^1.5.8",
     "angular-ui-bootstrap": "^2.0.0",
     "angular-ui-router": "^0.3.1",
-    "bootstrap": "^3.3.7"
+    "angularjs-toaster": "^2.0.0",
+    "bootstrap": "^3.3.7",
+    "ngstorage": "^0.3.11"
   },
   "devDependencies": {
     "babel-core": "^6.11.4",

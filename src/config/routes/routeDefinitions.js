@@ -32,6 +32,12 @@ module.exports = (ngModule) => {
       controller: 'homeCtrl',
       controllerAs: 'vm'
     })
+    .state('index.login', {
+      url: '/login',
+      template: require('../../modules/login/login.view.html'),
+      controller: 'loginCtrl',
+      controllerAs: 'vm'
+    })
     .state('public', {
       abstract: true,
       views: {

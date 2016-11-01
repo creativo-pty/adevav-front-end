@@ -1,0 +1,22 @@
+<div layout>
+  <section flex>
+    <h2 class="entry-title">Iniciar Sesión</h2>
+    <form name="loginForm" ng-submit="vm.login()" novalidate layout="column" layout-padding>
+      <div layout layout-padding>
+        <md-input-container flex>
+          <label>Su Correo Electrónico</label>
+          <input name="email" type="email" ng-model="vm.user.email" required />
+        </md-input-container>
+      </div>
+      <div layout layout-padding>
+        <md-input-container flex>
+          <label>Su Contraseña</label>
+          <input name="password" type="password" ng-model="vm.user.password" required />
+        </md-input-container>
+      </div>
+      <div layout layout-padding>
+        <md-button class="md-raised md-primary" type="submit">Iniciar Sesión</md-button>
+      </div>
+    </form>
+  </section>
+</div>
