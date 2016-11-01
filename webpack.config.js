@@ -20,6 +20,8 @@ const config = {
     }
   },
 
+  devtool: 'source-map',
+
   plugins: [
     new ExtractTextPlugin('style.css', {
       allChunks: true
@@ -60,6 +62,12 @@ const config = {
     }]
   }
 };
+
+const globalDefinitions = {
+  ADEVAV_BACKEND: JSON.stringify(process.env.ADEVAV_BACKEND || '/')
+};
+
+config.plugins.push(new webpack.DefinePlugin(globalDefinitions));
 
 if (process.env.NODE_ENV === 'production') {
 
