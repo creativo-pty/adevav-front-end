@@ -5,13 +5,21 @@
       <div layout layout-padding>
         <md-input-container flex>
           <label>Su Correo Electrónico</label>
-          <input name="email" type="email" ng-model="vm.user.email" required />
+          <input name="email" type="email" ng-model="vm.credentials.email" required />
+          <div ng-messages="loginForm.email.$error" name="email-errors" ng-if="loginForm.$submitted">
+            <ng-message when="required">Su correo electrónico es requerido.</ng-message>
+            <!-- TODO: Figure out why are both being triggered at once -->
+            <ng-message when="email">Lo proveído no es un correo electrónico.</ng-message>
+          </div>
         </md-input-container>
       </div>
       <div layout layout-padding>
         <md-input-container flex>
           <label>Su Contraseña</label>
-          <input name="password" type="password" ng-model="vm.user.password" required />
+          <input name="password" type="password" ng-model="vm.credentials.password" required />
+          <div ng-messages="loginForm.password.$error" name="password-errors" ng-if="loginForm.$submitted">
+            <ng-message when="required">Su contraseña es requerido.</ng-message>
+          </div>
         </md-input-container>
       </div>
       <div layout layout-padding>
