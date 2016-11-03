@@ -5,8 +5,10 @@ module.exports = (ngModule) => {
 
   User.$inject = ['$resource'];
 
+  const BASE_PATH = ADEVAV_BACKEND + 'users';
+
   function User($resource) {
-    return $resource(ADEVAV_BACKEND + 'users', {}, {
+    return $resource(BASE_PATH, {}, {
       get: {
         method: 'GET',
         isArray: true

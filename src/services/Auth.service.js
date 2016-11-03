@@ -3,9 +3,9 @@
 module.exports = (ngModule) => {
   ngModule.service('AuthService', AuthService);
 
-  AuthService.$inject = ['$localStorage', '$location', '$window'];
+  AuthService.$inject = ['$localStorage', '$location'];
 
-  function AuthService($localStorage, $location, $window) {
+  function AuthService($localStorage, $location) {
 
     function getAuthorizationToken() {
       return $localStorage['Authorization'] || '';
@@ -28,7 +28,6 @@ module.exports = (ngModule) => {
       $localStorage.$reset();
       $location.search({});
       $location.path('/');
-      $window.location.reload();
     }
 
     function setUser(user) {

@@ -3,28 +3,53 @@
 module.exports = (ngModule) => {
   ngModule.controller('loginCtrl', loginCtrl);
 
-  loginCtrl.$inject = ['$http', '$state', 'Auth', 'AuthService', 'toaster', 'ValidatorService'];
+  loginCtrl.$inject = [
+    '$http',
+    '$q',
+    '$state',
+    'Auth',
+    'AuthService',
+    'PermissionsService',
+    'toaster',
+    'ValidatorService'
+  ];
 
-  function loginCtrl($http, $state, Auth, AuthService, toaster, ValidatorService) {
-    this.user = {};
+  function loginCtrl(
+    $http,
+    $q,
+    $state,
+    Auth,
+    AuthService,
+    PermissionsService,
+    toaster,
+    ValidatorService
+  ) {
+
+    this.credentials = {};
 
     this.login = () => {
       const formInputs = [{
         type: 'email',
-        value: this.user.email
+        value: this.credentials.email
       }, {
         type: 'input',
-        value: this.user.password
+        value: this.credentials.password
       }];
 
       if (ValidatorService.isFormValid(formInputs)) {
-        Auth.post(this.user).$promise
+        Auth.login(this.credentials).$promise
         .then(({ error, token, user }) => {
           if (!error) {
             AuthService.login(token, user);
-            // TODO: Change to Admin Home Page when created
-            return $state.go('admin.users.list');
           }
+
+          return (error) ? $q.reject() : PermissionsService.get();
+        })
+        .then((permissions) => {
+          PermissionsService.set(permissions);
+
+          // TODO: Change to Admin Home Page when created
+          return $state.go('admin.users.list');
         });
       }
     };
