@@ -3,28 +3,18 @@
 module.exports = (ngModule) => {
   ngModule.controller('contactUsCtrl', contactUsCtrl);
 
-  contactUsCtrl.$inject = ['$stateParams'];
+  contactUsCtrl.$inject = ['$stateParams', 'UserService'];
 
-  function contactUsCtrl($stateParams) {
-    // TODO: Factory and model to query associates.
-    this.associates = [{
-      id: 0,
-      name: 'ADEVAV',
-      email: 'contacto@adevav.com'
-    }, {
-      id: 1,
-      name: 'ADEVAV Webmaster',
-      email: 'webmaster@adevav.org'
-    }, {
-      id: 2,
-      name: 'John Doe',
-      email: ''
-    }];
-
+  function contactUsCtrl($stateParams, UserService) {
+    this.associates = [];
     this.contact = {};
 
-    this.contact.associate = this.associates.find((associate) => {
-      return associate.id === $stateParams.associateId;
+    UserService.listAssociates()
+    .then((associates) => {
+      this.associates = associates;
+      this.contact.associate = associates.find(({ id }) => {
+        return $stateParams.associateId === id;
+      });
     });
 
     this.resetForm = (form) => {

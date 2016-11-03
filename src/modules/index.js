@@ -8,4 +8,5 @@ module.exports = (ngModule) => {
   require('./home')(ngModule);
   require('./login')(ngModule);
   require('./projects')(ngModule);
+  require('./users')(ngModule);
 };

@@ -9,8 +9,8 @@
           <!-- Expect that when an associate is selected, the option is attached
                to vm.contact -->
           <md-select name="associate" ng-model="vm.contact.associate" required>
-            <md-option ng-if="associate.email" ng-repeat="associate in vm.associates" ng-value="associate">
-              {{ associate.name }}
+            <md-option ng-repeat="associate in vm.associates track by associate.id" ng-value="associate">
+              {{ associate.fullName + ' (' + associate.position + ')' }}
             </md-option>
           </md-select>
           <div ng-messages="contactForm.associate.$error" name="associate-errors" ng-if="contactForm.$submitted">

@@ -2,26 +2,26 @@
   <section flex="75">
     <h2 class="entry-title">Nuestras Asociadas</h2>
     <ul id="associates-list" class="thumbnails" layout layout-wrap layout-align="space-around stretch">
-      <li id="associate-{{ associate.id }}" class="associate" ng-repeat="associate in vm.associates" flex="45">
+      <li id="associate-{{ associate.id }}" class="associate" ng-repeat="associate in vm.associates track by associate.id" flex="45">
         <article class="thumbnail">
           <h3>
-            {{ associate.name }}
-            <span class="label" ng-if="associate.role">
-              {{ associate.role }}
+            {{ associate.fullName }}
+            <span class="label">
+              {{ (associate.role) ? associate.position + ' - ' + associate.role : associate.position }}
             </span>
           </h3>
           <div layout>
             <div>
-              <img ng-src="{{associate.avatar}}"/>
+              <img ng-src="{{ associate.avatar }}"/>
             </div>
             <div flex>
-              <p>{{ associate.description }}</p>
+              <p>{{ associate.biography }}</p>
             </div>
           </div>
           <div class="navbar">
             <ul class="nav" layout>
               <li>
-                <a ui-sref="public.contactUs({ id: associate.id })"><i class="glyphicon glyphicon-envelope"></i></a>
+                <a ui-sref="public.contact-us({ associateId: associate.id })"><i class="glyphicon glyphicon-envelope"></i></a>
               </li>
               <li flex>
                 <a ui-sref="public.associates({ id: associate.id })">Ver más&hellip;</a>

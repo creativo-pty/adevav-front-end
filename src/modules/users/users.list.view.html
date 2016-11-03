@@ -1,0 +1,15 @@
+<div layout>
+  <section flex>
+    <h2 class="entry-title">Usuarios</h2>
+    <md-list layout layout-wrap>
+      <md-list-item ng-repeat="user in vm.users track by user.id" class="md-3-line" flex="50">
+        <img alt="{{ user.fullName }}" ng-src="{{ user.avatar }}" class="md-avatar" />
+        <div class="md-list-item-text" layout="column">
+          <p>{{ user.fullName }}</p>
+          <p>{{ user.role }}</p>
+          <p ng-if="user.position">{{ user.position }}</p>
+        </div>
+      </md-list-item>
+    </md-list>
+  </section>
+</div>
