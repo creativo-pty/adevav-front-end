@@ -1,0 +1,30 @@
+version: '2'
+services:
+  adevav:
+    image: creativopty/adevav-front-end:latest
+    env_file:
+      - ./services.env
+    ports:
+      - 80:80
+    links:
+      - server
+  server:
+    image: creativopty/adevav-back-end:latest
+    links:
+      - 'mysql'
+    ports:
+      - '3001:3001'
+    environment:
+      DB_USER: 'root'
+      DB_PASSWORD: 'adevav_2016'
+      DB_NAME: 'adevav'
+      DB_HOST: 'mysql'
+    depends_on:
+      - 'mysql'
+  mysql:
+    image: 'mysql:5.5'
+    ports:
+      - '3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=adevav_2016
+      - MYSQL_DATABASE=adevav

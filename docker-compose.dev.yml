@@ -3,7 +3,7 @@ services:
   adevav:
     build:
       context: ./
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-dev
     env_file:
       - ./services.env
     ports:
@@ -14,7 +14,7 @@ services:
       - server
     privileged: true
   server:
-    image: creativopty/adevav-back-end:latest
+    image: creativopty/adevav-back-end:develop
     links:
       - 'mysql'
     ports:
