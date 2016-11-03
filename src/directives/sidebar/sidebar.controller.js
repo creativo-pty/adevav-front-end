@@ -3,9 +3,9 @@
 module.exports = (ngModule) => {
   ngModule.controller('sidebarCtrl', sidebarCtrl);
 
-  sidebarCtrl.$inject = ['$location'];
+  sidebarCtrl.$inject = ['$state'];
 
-  function sidebarCtrl($location) {
+  function sidebarCtrl($state) {
     // TODO: Limit to a maximum of five posts.
     this.posts = [{
       title: 'Reseña Histórica',
@@ -21,6 +21,6 @@ module.exports = (ngModule) => {
       title: 'Enero del 2016',
       permalink: '/'
     }];
-    this.currentPage = $location.url();
+    this.currentPage = $state.current.name;
   }
 };

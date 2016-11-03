@@ -8,6 +8,42 @@ module.exports = (ngModule) => {
   function router($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
     $stateProvider
+    .state('admin', {
+      abstract: true,
+      url: '/admin',
+      views: {
+        header: {
+          template: require('../../partials/header/header.view.html'),
+          controller: 'headerCtrl',
+          controllerAs: 'vm'
+        },
+        content: {
+          template: '<ui-view />'
+        },
+        footer: {
+          template: require('../../partials/footer/footer.view.html'),
+          controller: 'footerCtrl',
+          controllerAs: 'vm'
+        }
+      }
+    })
+    .state('admin.logout', {
+      url: '/logout',
+      onEnter: function(AuthService) {
+        return AuthService.logout();
+      }
+    })
+    .state('admin.users', {
+      abstract: true,
+      url: '/users',
+      template: '<ui-view/>'
+    })
+    .state('admin.users.list', {
+      url: '',
+      template: require('../../modules/users/users.list.view.html'),
+      controller: 'usersListCtrl',
+      controllerAs: 'vm'
+    })
     .state('index', {
       abstract: true,
       views: {

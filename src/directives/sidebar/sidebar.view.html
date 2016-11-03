@@ -1,6 +1,6 @@
 <aside ng-if="vm.posts.length || vm.projects.length">
   <article><search-form></search-form></article>
-  <article ng-if="vm.currentPage !== '/bitacora/' && vm.posts.length">
+  <article ng-if="!vm.currentPage.includes('blog') && vm.posts.length">
     <h1>Artículos Recientes</h1>
     <ul>
       <li ng-repeat="post in vm.posts">
@@ -8,7 +8,7 @@
       </li>
     </ul>
   </article>
-  <article ng-if="vm.currentPage !== '/proyectos/' && vm.projects.length">
+  <article ng-if="!vm.currentPage.includes('projects') && vm.projects.length">
     <h1>Proyectos Recientes</h1>
     <ul>
       <li ng-repeat="project in vm.projects">
