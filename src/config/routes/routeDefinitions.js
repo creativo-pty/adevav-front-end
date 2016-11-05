@@ -38,6 +38,13 @@ module.exports = (ngModule) => {
       url: '/users',
       template: '<ui-view/>'
     })
+    .state('admin.users.create', {
+      url: '/create',
+      permissionRequired: 'users::create',
+      template: require('../../modules/users/users.create.view.html'),
+      controller: 'usersCreateCtrl',
+      controllerAs: 'vm'
+    })
     .state('admin.users.list', {
       url: '',
       template: require('../../modules/users/users.list.view.html'),

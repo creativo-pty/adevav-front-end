@@ -1,0 +1,71 @@
+<div layout>
+  <section flex layout="column">
+    <h2 class="entry-title">Crear Usuarios</h2>
+    <form ng-submit="vm.submitForm(userForm)" name="userForm" novalidate layout="column" layout-padding>
+      <div layout layout-padding>
+        <div layout layout-padding flex="66">
+          <md-input-container flex>
+            <label>Correo Electrónico</label>
+            <input name="email" type="email" ng-model="vm.user.email" required />
+            <div ng-messages="userForm.email.$error" name="email-errors" ng-if="userForm.$submitted">
+                <ng-message when="required">Su correo electrónico es requerido.</ng-message>
+                <ng-message when="email">Lo proveído no es un correo electrónico.</ng-message>
+            </div>
+          </md-input-container>
+        </div>
+        <div layout layout-padding flex="33">
+          <md-input-container flex>
+            <label>Rol</label>
+            <md-select ng-model="vm.user.role" aria-label="Rol">
+              <md-option ng-value="role" ng-repeat="role in vm.roles">{{ role }}</md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+      </div>
+      <div layout layout-padding>
+        <div layout layout-padding flex="33">
+          <md-input-container flex>
+            <label>Su Nombre</label>
+            <input name="firstName" type="text" ng-model="vm.user.firstName" />
+          </md-input-container>
+        </div>
+        <div layout layout-padding flex="33">
+          <md-input-container flex>
+            <label>Su Apellido</label>
+            <input name="lastName" type="text" ng-model="vm.user.lastName" />
+          </md-input-container>
+        </div>
+        <div layout layout-padding flex="33">
+          <md-input-container flex>
+            <label>Su Contraseña</label>
+            <input name="password" type="password" ng-model="vm.user.password" />
+          </md-input-container>
+        </div>
+      </div>
+      <div layout layout-padding>
+        <md-checkbox name="isAssociate" ng-model="vm.user.isAssociate" ng-change="vm.setAssociate()">
+          Es Miembro?
+        </md-checkbox>
+        <md-input-container ng-show="vm.user.isAssociate" flex>
+          <label>Posición</label>
+          <md-select ng-model="vm.user.position" aria-label="Posición">
+            <md-option ng-value="position" ng-repeat="position in vm.positions">{{ position }}</md-option>
+          </md-select>
+        </md-input-container>
+        <md-checkbox name="isPublic" ng-show="vm.user.isAssociate" ng-model="vm.user.isPublic">
+          Es Público?
+        </md-checkbox>
+      </div>
+      <div ng-show="vm.user.isAssociate" layout layout-padding>
+        <md-input-container flex>
+          <label>Biografía</label>
+          <textarea name="biography" ng-model="vm.user.biography"></textarea>
+        </md-input-container>
+      </div>
+      <div layout layout-padding>
+        <md-button type="reset" ng-click="vm.resetForm(userForm)" class="md-raised">Borrar</md-button>
+        <md-button type="submit" ng-disabled="userForm.$invalid" class="md-raised md-primary">Crear</md-button>
+      </div>
+    </form>
+  </section>
+</div>

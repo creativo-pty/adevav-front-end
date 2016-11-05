@@ -18,7 +18,8 @@ module.exports = (ngModule) => {
       const [resource, action] = (permissionRequired) ? permissionRequired.split('::') : ['', ''];
 
       if (permissionRequired && !PermissionsService.isUserAllowed(resource, action)) {
-        return $state.go('^');
+        // TODO: Change to previous page
+        return $state.go('admin.users.list');
       }
     });
   };

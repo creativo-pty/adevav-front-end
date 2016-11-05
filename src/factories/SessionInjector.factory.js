@@ -96,6 +96,9 @@ module.exports = (ngModule) => {
 
           toaster.pop('error', response.data.error, response.data.message);
           return response;
+        } else if (response.status === 409) {
+          toaster.pop('error', response.data.error, response.data.message);
+          return response;
         }
 
         return response;
