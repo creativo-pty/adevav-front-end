@@ -1,8 +1,17 @@
 <div layout>
-  <section flex>
+  <section flex layout="column">
     <h2 class="entry-title">Usuarios</h2>
+    <div class="create-user-button">
+      <md-button ng-disabled="!vm.permission('users', 'create')" class="md-raised md-primary md-icon-button" aria-label="Crear Usuarios" ui-sref="admin.users.create">
+        <i class="zmdi zmdi-account-add zmdi-hc-lg"></i>
+        <md-tooltip md-direction="left" ng-if="vm.permission('users', 'create')">
+          Crear Usuarios
+        </md-tooltip>
+      </md-button>
+      <md-tooltip md-direction="left" ng-if="!vm.permission('users', 'create')">No tienes permiso para crear nuevos usuarios</md-tooltip>
+    </div>
     <md-list layout layout-wrap>
-      <md-list-item ng-repeat="user in vm.users track by user.id" class="md-3-line" flex="50">
+      <md-list-item ng-repeat="user in vm.users track by user.id" class="md-3-line" flex="33">
         <img alt="{{ user.fullName }}" ng-src="{{ user.avatar }}" class="md-avatar" />
         <div class="md-list-item-text" layout="column">
           <p>{{ user.fullName }}</p>

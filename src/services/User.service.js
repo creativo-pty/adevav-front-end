@@ -14,6 +14,10 @@ module.exports = (ngModule) => {
       });
     }
 
+    function createUser(user) {
+      return User.create(user).$promise;
+    }
+
     function isAssociate(user) {
       return user.isAssociate;
     }
@@ -39,6 +43,7 @@ module.exports = (ngModule) => {
     }
 
     return {
+      createUser,
       listAssociates,
       listUsers
     };

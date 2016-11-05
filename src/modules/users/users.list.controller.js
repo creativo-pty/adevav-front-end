@@ -3,9 +3,10 @@
 module.exports = (ngModule) => {
   ngModule.controller('usersListCtrl', usersListCtrl);
 
-  usersListCtrl.$inject = ['UserService'];
+  usersListCtrl.$inject = ['PermissionsService', 'UserService'];
 
-  function usersListCtrl(UserService) {
+  function usersListCtrl(PermissionsService, UserService) {
+    this.permission = PermissionsService.isUserAllowed;
     this.users = [];
 
     UserService.listUsers()
