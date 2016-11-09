@@ -1,9 +1,9 @@
 <div layout>
   <section flex layout="column">
     <h2 class="entry-title">Usuarios</h2>
-    <div class="create-user-button">
-      <md-button ng-disabled="!vm.permission('users', 'create')" class="md-raised md-primary md-icon-button" aria-label="Crear Usuarios" ui-sref="admin.users.create">
-        <i class="zmdi zmdi-account-add zmdi-hc-lg"></i>
+    <div class="create-user-button flex-end">
+      <md-button ng-disabled="!vm.permission('users', 'create')" class="md-fab md-mini md-raised md-primary md-icon-button" aria-label="Crear Usuarios" ui-sref="admin.users.create">
+        <md-icon class="zmdi zmdi-account-add zmdi-hc-2x"></md-icon>
         <md-tooltip md-direction="left" ng-if="vm.permission('users', 'create')">
           Crear Usuarios
         </md-tooltip>
@@ -11,13 +11,14 @@
       <md-tooltip md-direction="left" ng-if="!vm.permission('users', 'create')">No tienes permiso para crear nuevos usuarios</md-tooltip>
     </div>
     <md-list layout layout-wrap>
-      <md-list-item ng-repeat="user in vm.users track by user.id" class="md-3-line" flex="33">
+      <md-list-item ui-sref="admin.users.view({ userId: user.id })" ng-repeat="user in vm.users track by user.id" class="md-3-line" flex="33">
         <img alt="{{ user.fullName }}" ng-src="{{ user.avatar }}" class="md-avatar" />
         <div class="md-list-item-text" layout="column">
           <p>{{ user.fullName }}</p>
           <p>{{ user.role }}</p>
           <p ng-if="user.position">{{ user.position }}</p>
         </div>
+        <md-icon ng-click="" class="md-secondary zmdi zmdi-email zmdi-hc-2x" aria-label="Enviar Correo"></md-icon>
       </md-list-item>
     </md-list>
   </section>

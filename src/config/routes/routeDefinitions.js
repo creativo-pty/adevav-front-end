@@ -41,12 +41,29 @@ module.exports = (ngModule) => {
     .state('admin.users.create', {
       url: '/create',
       permissionRequired: 'users::create',
-      template: require('../../modules/users/users.create.view.html'),
+      template: require('../../modules/users/users.create-edit.view.html'),
       controller: 'usersCreateCtrl',
+      controllerAs: 'vm'
+    })
+    .state('admin.users.view', {
+      url: '/{userId}',
+      permissionRequired: 'users::view',
+      resolve: {
+        originalUser: function($stateParams, UserService) {
+          return UserService.getUser($stateParams.userId);
+        }
+      },
+      template: require('../../modules/users/users.create-edit.view.html'),
+      controller: 'usersEditViewCtrl',
       controllerAs: 'vm'
     })
     .state('admin.users.list', {
       url: '',
+      resolve: {
+        users: function(UserService) {
+          return UserService.listUsers();
+        }
+      },
       template: require('../../modules/users/users.list.view.html'),
       controller: 'usersListCtrl',
       controllerAs: 'vm'
@@ -107,6 +124,11 @@ module.exports = (ngModule) => {
     })
     .state('public.associates', {
       url: '/associates',
+      resolve: {
+        associates: function(UserService) {
+          return UserService.listAssociates();
+        }
+      },
       template: require('../../modules/associates/associates.view.html'),
       controller: 'associatesCtrl',
       controllerAs: 'vm'
