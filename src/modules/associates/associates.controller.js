@@ -3,14 +3,9 @@
 module.exports = (ngModule) => {
   ngModule.controller('associatesCtrl', associatesCtrl);
 
-  associatesCtrl.$inject = ['UserService'];
+  associatesCtrl.$inject = ['associates'];
 
-  function associatesCtrl(UserService) {
-    this.associates = [];
-
-    UserService.listAssociates()
-    .then((associates) => {
-      this.associates = associates;
-    });
+  function associatesCtrl(associates) {
+    this.associates = associates;
   }
 };

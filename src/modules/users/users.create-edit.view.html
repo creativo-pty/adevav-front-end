@@ -1,12 +1,21 @@
 <div layout>
   <section flex layout="column">
-    <h2 class="entry-title">Crear Usuarios</h2>
+    <h2 class="entry-title">{{ vm.title }}</h2>
+    <div class="edit-user-button flex-end" ng-if="vm.showEditableButton">
+      <md-button ng-click="vm.editable = !vm.editable" ng-disabled="!vm.permission('users', 'update')" class="md-fab md-mini md-raised md-primary md-icon-button" aria-label="Editar Usuarios">
+        <md-icon class="zmdi zmdi-edit zmdi-hc-2x"></md-icon>
+        <md-tooltip md-direction="left" ng-if="vm.permission('users', 'update')">
+          Editar {{ vm.user.fullName }}
+        </md-tooltip>
+      </md-button>
+      <md-tooltip md-direction="left" ng-if="!vm.permission('users', 'update')">No tienes permiso para editar este perfíl</md-tooltip>
+    </div>
     <form ng-submit="vm.submitForm(userForm)" name="userForm" novalidate layout="column" layout-padding>
       <div layout layout-padding>
         <div layout layout-padding flex="66">
           <md-input-container flex>
             <label>Correo Electrónico</label>
-            <input name="email" type="email" ng-model="vm.user.email" required />
+            <input name="email" type="email" ng-model="vm.user.email" required ng-disabled="!vm.editable" />
             <div ng-messages="userForm.email.$error" name="email-errors" ng-if="userForm.$submitted">
                 <ng-message when="required">Su correo electrónico es requerido.</ng-message>
                 <ng-message when="email">Lo proveído no es un correo electrónico.</ng-message>
@@ -16,7 +25,7 @@
         <div layout layout-padding flex="33">
           <md-input-container flex>
             <label>Rol</label>
-            <md-select ng-model="vm.user.role" aria-label="Rol">
+            <md-select ng-model="vm.user.role" aria-label="Rol" ng-disabled="!vm.editable">
               <md-option ng-value="role" ng-repeat="role in vm.roles">{{ role }}</md-option>
             </md-select>
           </md-input-container>
@@ -26,45 +35,45 @@
         <div layout layout-padding flex="33">
           <md-input-container flex>
             <label>Su Nombre</label>
-            <input name="firstName" type="text" ng-model="vm.user.firstName" />
+            <input name="firstName" type="text" ng-model="vm.user.firstName" ng-disabled="!vm.editable" />
           </md-input-container>
         </div>
         <div layout layout-padding flex="33">
           <md-input-container flex>
             <label>Su Apellido</label>
-            <input name="lastName" type="text" ng-model="vm.user.lastName" />
+            <input name="lastName" type="text" ng-model="vm.user.lastName" ng-disabled="!vm.editable" />
           </md-input-container>
         </div>
         <div layout layout-padding flex="33">
           <md-input-container flex>
             <label>Su Contraseña</label>
-            <input name="password" type="password" ng-model="vm.user.password" />
+            <input name="password" type="password" ng-model="vm.user.password" ng-disabled="!vm.editable" />
           </md-input-container>
         </div>
       </div>
       <div layout layout-padding>
-        <md-checkbox name="isAssociate" ng-model="vm.user.isAssociate" ng-change="vm.setAssociate()">
+        <md-checkbox name="isAssociate" ng-model="vm.user.isAssociate" ng-change="vm.setAssociate()" ng-disabled="!vm.editable">
           Es Miembro?
         </md-checkbox>
         <md-input-container ng-show="vm.user.isAssociate" flex>
           <label>Posición</label>
-          <md-select ng-model="vm.user.position" aria-label="Posición">
+          <md-select ng-model="vm.user.position" aria-label="Posición" ng-disabled="!vm.editable">
             <md-option ng-value="position" ng-repeat="position in vm.positions">{{ position }}</md-option>
           </md-select>
         </md-input-container>
-        <md-checkbox name="isPublic" ng-show="vm.user.isAssociate" ng-model="vm.user.isPublic">
+        <md-checkbox name="isPublic" ng-show="vm.user.isAssociate" ng-model="vm.user.isPublic" ng-disabled="!vm.editable">
           Es Público?
         </md-checkbox>
       </div>
       <div ng-show="vm.user.isAssociate" layout layout-padding>
         <md-input-container flex>
           <label>Biografía</label>
-          <textarea name="biography" ng-model="vm.user.biography"></textarea>
+          <textarea name="biography" ng-model="vm.user.biography" ng-disabled="!vm.editable"></textarea>
         </md-input-container>
       </div>
       <div layout layout-padding>
-        <md-button type="reset" ng-click="vm.resetForm(userForm)" class="md-raised">Borrar</md-button>
-        <md-button type="submit" ng-disabled="userForm.$invalid" class="md-raised md-primary">Crear</md-button>
+        <md-button ng-click="vm.resetForm(userForm)" class="md-raised">Borrar</md-button>
+        <md-button type="submit" ng-disabled="userForm.$invalid || !vm.editable" class="md-raised md-primary">{{ vm.submitButtonText }}</md-button>
       </div>
     </form>
   </section>

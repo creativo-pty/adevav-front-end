@@ -14,7 +14,15 @@ module.exports = (ngModule) => {
       },
       get: {
         method: 'GET',
+        url: BASE_PATH + '/:userId'
+      },
+      list: {
+        method: 'GET',
         isArray: true
+      },
+      update: {
+        method: 'PUT',
+        url: BASE_PATH + '/:userId'
       }
     });
   }

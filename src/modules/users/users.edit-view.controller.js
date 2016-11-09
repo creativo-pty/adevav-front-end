@@ -1,12 +1,13 @@
 'use strict';
 
 module.exports = (ngModule) => {
-  ngModule.controller('usersCreateCtrl', usersCreateCtrl);
+  ngModule.controller('usersEditViewCtrl', usersEditViewCtrl);
 
-  usersCreateCtrl.$inject = ['$state', 'UserService'];
+  usersEditViewCtrl.$inject = ['$state', 'originalUser', 'PermissionsService', 'UserService'];
 
-  function usersCreateCtrl($state, UserService) {
-    this.editable = true;
+  function usersEditViewCtrl($state, originalUser, PermissionsService, UserService) {
+    this.showEditableButton = true;
+    this.permission = PermissionsService.isUserAllowed;
     this.positions = [
       'Member',
       'Vocal',
@@ -25,21 +26,18 @@ module.exports = (ngModule) => {
       'Editor',
       'Administrator'
     ];
-    this.submitButtonText = 'Crear';
-    this.title = 'Crear Usuario';
+    this.submitButtonText = 'Editar';
+    this.title = `Edita el Perfíl de ${originalUser.fullName}`;
 
-    this.user = {
-      role: 'Subscriber'
-    };
+    this.originalUser = Object.assign({}, originalUser);
+    this.user = Object.assign({}, originalUser);
 
     this.resetForm = (form) => {
       if (form) {
         form.$setPristine();
         form.$setUntouched();
       }
-      this.user = {
-        role: 'Subscriber'
-      };
+      this.user = Object.assign({}, this.originalUser);
     };
 
     this.submitForm = (form) => {
@@ -47,7 +45,7 @@ module.exports = (ngModule) => {
         form.$setPristine();
         form.$setUntouched();
       }
-      UserService.createUser(this.user)
+      UserService.updateUser(this.originalUser.id, this.user)
       .then((user) => {
         if (!user.error) {
           return $state.go('admin.users.list');

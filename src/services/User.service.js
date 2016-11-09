@@ -18,12 +18,17 @@ module.exports = (ngModule) => {
       return User.create(user).$promise;
     }
 
+    function getUser(userId) {
+      return User.get({ userId }).$promise
+      .then((user) => attach(user));
+    }
+
     function isAssociate(user) {
       return user.isAssociate;
     }
 
     function listAssociates() {
-      return User.get().$promise
+      return User.list().$promise
       .then((users) => {
         return users.filter(isAssociate).map(attach);
       })
@@ -33,7 +38,7 @@ module.exports = (ngModule) => {
     }
 
     function listUsers() {
-      return User.get().$promise
+      return User.list().$promise
       .then((users) => {
         return users.map(attach);
       })
@@ -42,10 +47,21 @@ module.exports = (ngModule) => {
       });
     }
 
+    function updateUser(userId, user) {
+      delete user.$promise;
+      delete user.$resolved;
+      delete user.fullName;
+
+      return User.update({ userId }, user).$promise
+      .then((user) => attach(user));
+    }
+
     return {
       createUser,
+      getUser,
       listAssociates,
-      listUsers
+      listUsers,
+      updateUser
     };
   }
 };
