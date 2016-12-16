@@ -7,7 +7,7 @@ module.exports = (ngModule) => {
 
   function usersEditViewCtrl($state, originalUser, PermissionsService, UserService) {
     this.showEditableButton = true;
-    this.permission = PermissionsService.isUserAllowed;
+    this.permissionToUpdate = PermissionsService.isUserAllowed('users', 'update');
     this.positions = [
       'Member',
       'Vocal',

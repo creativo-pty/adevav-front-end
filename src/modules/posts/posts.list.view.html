@@ -1,0 +1,24 @@
+<div layout>
+  <section flex layout="column">
+    <h2 class="entry-title">Bitácora</h2>
+    <div class="create-post-button flex-end">
+      <md-button ng-disabled="!vm.permissionToCreate" class="md-fab md-mini md-raised md-primary md-icon-button" aria-label="Crear Entradas" ui-sref="admin.posts.create">
+        <md-icon class="zmdi zmdi-file-plus zmdi-hc-2x"></md-icon>
+        <md-tooltip md-direction="left" ng-if="vm.permissionToCreate">
+          Crear Entradas
+        </md-tooltip>
+      </md-button>
+      <md-tooltip md-direction="left" ng-if="!vm.permissionToCreate">No tienes permiso para crear nuevas entradas</md-tooltip>
+    </div>
+    <md-list layout layout-wrap>
+      <md-list-item ui-sref="admin.posts.view({ postSlug: post.slug })" ng-repeat="post in vm.posts track by post.id" class="md-3-line" flex="33">
+        <div class="md-list-item-text" layout="column">
+          <h3>{{ post.title }}</h3>
+          <p>Escrito por: {{ post.author.fullName }}</p>
+          <p ng-if="!post.publishedOn">Status: {{ post.status }}</p>
+          <p ng-if="post.publishedOn">Publicado el {{ post.publishedOn }}</p>
+        </div>
+      </md-list-item>
+    </md-list>
+  </section>
+</div>

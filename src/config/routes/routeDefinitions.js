@@ -33,6 +33,22 @@ module.exports = (ngModule) => {
         return AuthService.logout();
       }
     })
+    .state('admin.posts', {
+      abstract: true,
+      url: '/posts',
+      template: '<ui-view/>'
+    })
+    .state('admin.posts.list', {
+      url: '',
+      resolve: {
+        posts: function(PostService) {
+          return PostService.listPosts();
+        }
+      },
+      template: require('../../modules/posts/posts.list.view.html'),
+      controller: 'postsListCtrl',
+      controllerAs: 'vm'
+    })
     .state('admin.users', {
       abstract: true,
       url: '/users',

@@ -2,13 +2,13 @@
   <section flex layout="column">
     <h2 class="entry-title">Usuarios</h2>
     <div class="create-user-button flex-end">
-      <md-button ng-disabled="!vm.permission('users', 'create')" class="md-fab md-mini md-raised md-primary md-icon-button" aria-label="Crear Usuarios" ui-sref="admin.users.create">
+      <md-button ng-disabled="!vm.permissionToCreate" class="md-fab md-mini md-raised md-primary md-icon-button" aria-label="Crear Usuarios" ui-sref="admin.users.create">
         <md-icon class="zmdi zmdi-account-add zmdi-hc-2x"></md-icon>
-        <md-tooltip md-direction="left" ng-if="vm.permission('users', 'create')">
+        <md-tooltip md-direction="left" ng-if="vm.permissionToCreate">
           Crear Usuarios
         </md-tooltip>
       </md-button>
-      <md-tooltip md-direction="left" ng-if="!vm.permission('users', 'create')">No tienes permiso para crear nuevos usuarios</md-tooltip>
+      <md-tooltip md-direction="left" ng-if="!vm.permissionToCreate">No tienes permiso para crear nuevos usuarios</md-tooltip>
     </div>
     <md-list layout layout-wrap>
       <md-list-item ui-sref="admin.users.view({ userId: user.id })" ng-repeat="user in vm.users track by user.id" class="md-3-line" flex="33">
