@@ -6,7 +6,7 @@ module.exports = (ngModule) => {
   usersListCtrl.$inject = ['PermissionsService', 'users'];
 
   function usersListCtrl(PermissionsService, users) {
-    this.permission = PermissionsService.isUserAllowed;
+    this.permissionToCreate = PermissionsService.isUserAllowed('users', 'create');
     this.users = users;
   }
 };

@@ -69,6 +69,10 @@ const globalDefinitions = {
 
 config.plugins.push(new webpack.DefinePlugin(globalDefinitions));
 
+config.plugins.push(new webpack.ProvidePlugin({
+  moment:'moment/moment'
+}));
+
 if (process.env.NODE_ENV === 'production') {
 
   config.output.path = __dirname + '/dist';

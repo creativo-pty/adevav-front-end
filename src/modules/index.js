@@ -7,6 +7,7 @@ module.exports = (ngModule) => {
   require('./contactUs')(ngModule);
   require('./home')(ngModule);
   require('./login')(ngModule);
+  require('./posts')(ngModule);
   require('./projects')(ngModule);
   require('./users')(ngModule);
 };

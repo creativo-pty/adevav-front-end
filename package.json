@@ -13,7 +13,7 @@
     "docker:bash": "docker exec -it `docker ps | grep website_adevav | awk '{print $1}'` bash",
     "docker:kill": "npm run docker:stop && npm run docker:rm",
     "docker:production": "docker-compose -f docker-compose.production.yml up -d",
-    "docker:rm": "docker-compose -f docker-compose.dev.yml rm",
+    "docker:rm": "docker-compose -f docker-compose.dev.yml rm -f",
     "docker:start": "docker-compose -f docker-compose.dev.yml up -d",
     "docker:stop": "docker-compose -f docker-compose.dev.yml kill",
     "docker:update": "docker pull creativopty/adevav-front-end:develop; docker pull creativopty/adevav-back-end:develop; docker pull mysql:5.5",
@@ -42,6 +42,7 @@
     "angularjs-toaster": "^2.0.0",
     "bootstrap": "^3.3.7",
     "material-design-iconic-font": "^2.2.0",
+    "moment": "^2.17.1",
     "ngstorage": "^0.3.11"
   },
   "devDependencies": {

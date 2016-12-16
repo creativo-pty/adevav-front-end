@@ -3,16 +3,9 @@
 module.exports = (ngModule) => {
   ngModule.service('UserService', UserService);
 
-  UserService.$inject = ['toaster', 'User'];
+  UserService.$inject = ['toaster', 'User', 'FormatorService'];
 
-  function UserService(toaster, User) {
-
-    function attach(user) {
-      return Object.assign({}, user, {
-        avatar: user.avatar || require('../img/anonymous.png'),
-        fullName: `${user.firstName} ${user.lastName}`
-      });
-    }
+  function UserService(toaster, User, FormatorService) {
 
     function createUser(user) {
       return User.create(user).$promise;
@@ -20,7 +13,7 @@ module.exports = (ngModule) => {
 
     function getUser(userId) {
       return User.get({ userId }).$promise
-      .then((user) => attach(user));
+      .then(FormatorService.user);
     }
 
     function isAssociate(user) {
@@ -30,7 +23,7 @@ module.exports = (ngModule) => {
     function listAssociates() {
       return User.list().$promise
       .then((users) => {
-        return users.filter(isAssociate).map(attach);
+        return FormatorService.users(users.filter(isAssociate));
       })
       .catch(({ data }) => {
         toaster.pop('error', data.error, data.message);
@@ -39,9 +32,7 @@ module.exports = (ngModule) => {
 
     function listUsers() {
       return User.list().$promise
-      .then((users) => {
-        return users.map(attach);
-      })
+      .then(FormatorService.users)
       .catch(({ data }) => {
         toaster.pop('error', data.error, data.message);
       });
@@ -53,7 +44,7 @@ module.exports = (ngModule) => {
       delete user.fullName;
 
       return User.update({ userId }, user).$promise
-      .then((user) => attach(user));
+      .then(FormatorService.user);
     }
 
     return {

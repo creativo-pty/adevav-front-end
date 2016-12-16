@@ -14,6 +14,7 @@ require('angular-ui-router');
 
 // Require other libraries
 require('angularjs-toaster');
+require('moment/moment');
 require('ngstorage');
 
 // Require modules from Bootstrap

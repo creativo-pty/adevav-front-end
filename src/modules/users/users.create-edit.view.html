@@ -2,13 +2,13 @@
   <section flex layout="column">
     <h2 class="entry-title">{{ vm.title }}</h2>
     <div class="edit-user-button flex-end" ng-if="vm.showEditableButton">
-      <md-button ng-click="vm.editable = !vm.editable" ng-disabled="!vm.permission('users', 'update')" class="md-fab md-mini md-raised md-primary md-icon-button" aria-label="Editar Usuarios">
+      <md-button ng-click="vm.editable = !vm.editable" ng-disabled="!vm.permissionToUpdate" class="md-fab md-mini md-raised md-primary md-icon-button" aria-label="Editar Usuarios">
         <md-icon class="zmdi zmdi-edit zmdi-hc-2x"></md-icon>
-        <md-tooltip md-direction="left" ng-if="vm.permission('users', 'update')">
+        <md-tooltip md-direction="left" ng-if="vm.permissionToUpdate">
           Editar {{ vm.user.fullName }}
         </md-tooltip>
       </md-button>
-      <md-tooltip md-direction="left" ng-if="!vm.permission('users', 'update')">No tienes permiso para editar este perfíl</md-tooltip>
+      <md-tooltip md-direction="left" ng-if="!vm.permissionToUpdate">No tienes permiso para editar este perfíl</md-tooltip>
     </div>
     <form ng-submit="vm.submitForm(userForm)" name="userForm" novalidate layout="column" layout-padding>
       <div layout layout-padding>
