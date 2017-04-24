@@ -1,0 +1,65 @@
+<div layout>
+  <section flex layout="column">
+    <h2 class="entry-title">{{ vm.title }}</h2>
+    <!-- <div class="edit-post-button flex-end" ng-if="vm.showEditableButton">
+      <md-button ng-click="vm.editable = !vm.editable" ng-disabled="!vm.permissionToUpdate" class="md-fab md-mini md-raised md-primary md-icon-button" aria-label="Editar Usuarios">
+        <md-icon class="zmdi zmdi-edit zmdi-hc-2x"></md-icon>
+        <md-tooltip md-direction="left" ng-if="vm.permissionToUpdate">
+          Editar {{ vm.post.fullName }}
+        </md-tooltip>
+      </md-button>
+      <md-tooltip md-direction="left" ng-if="!vm.permissionToUpdate">No tienes permiso para editar este perfíl</md-tooltip>
+    </div> -->
+    <form ng-submit="vm.submitForm(postForm)" name="postForm" novalidate layout="column" layout-padding>
+      <div layout layout-padding>
+        <div layout layout-padding flex>
+          <md-input-container flex>
+            <label>Título</label>
+            <input name="title" type="text" ng-model="vm.post.title" required ng-disabled="!vm.editable" />
+            <div ng-messages="postForm.title.$error" name="title-errors" ng-if="postForm.$submitted">
+                <ng-message when="required">El título es requerido.</ng-message>
+            </div>
+          </md-input-container>
+        </div>
+      </div>
+      <div layout layout-padding>
+        <div layout layout-padding flex="75">
+          <md-input-container flex>
+            <label>Contenido</label>
+            <textarea name="body" ng-model="vm.post.body" ng-disabled="!vm.editable"></textarea>
+          </md-input-container>
+        </div>
+        <div layout layout-padding flex="25">
+          <div layout="column" layout-padding>
+            <md-input-container>
+              <label>Slug</label>
+              <input name="slug" type="text" ng-model="vm.post.slug" ng-disabled="!vm.editable" />
+            </md-input-container>
+            <md-input-container>
+              <label>Estatus</label>
+              <md-select ng-model="vm.post.status" aria-label="Estatus" ng-disabled="!vm.editable">
+                <md-option ng-value="status" ng-repeat="status in vm.statuses">{{ status }}</md-option>
+              </md-select>
+            </md-input-container>
+            <md-input-container>
+              <label>Visibilidad</label>
+              <md-select ng-model="vm.post.visibility" aria-label="Visibilidad" ng-disabled="!vm.editable">
+                <md-option ng-value="visibility" ng-repeat="visibility in vm.visibilities">{{ visibility }}</md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+        </div>
+      </div>
+      <div layout layout-padding>
+        <div layout layout-padding flex>
+          <h4>Día de Publicación</h4>
+          <md-datepicker name="publishedOn" ng-model="vm.post.publishedOn" ng-disabled="!vm.editable"></md-datepicker>
+        </div>
+      </div>
+      <div layout layout-padding>
+        <md-button ng-click="vm.resetForm(postForm)" class="md-raised">Borrar</md-button>
+        <md-button type="submit" ng-disabled="postForm.$invalid || !vm.editable" class="md-raised md-primary">{{ vm.submitButtonText }}</md-button>
+      </div>
+    </form>
+  </section>
+</div>

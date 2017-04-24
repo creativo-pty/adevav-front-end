@@ -9,6 +9,9 @@ module.exports = (ngModule) => {
 
   function Post($resource) {
     return $resource(BASE_PATH, {}, {
+      create: {
+        method: 'POST'
+      },
       list: {
         method: 'GET',
         isArray: true

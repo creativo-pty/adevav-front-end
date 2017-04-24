@@ -38,6 +38,12 @@ module.exports = (ngModule) => {
       url: '/posts',
       template: '<ui-view/>'
     })
+    .state('admin.posts.create', {
+      url: '/create',
+      template: require('../../modules/posts/posts.create-edit.view.html'),
+      controller: 'postsCreateCtrl',
+      controllerAs: 'vm'
+    })
     .state('admin.posts.list', {
       url: '',
       resolve: {
